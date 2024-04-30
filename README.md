@@ -1,4 +1,4 @@
-# EMPRESA
+# Sobre o Projeto e Requisitos Funcionais
 
 ## Identificação da empresa
 **Nome:** Patinhas Comunitárias  
@@ -66,5 +66,5 @@ Ao atender a essas necessidades e expectativas, o novo sistema poderá capacitar
 | RF10 | Análise do pedido de adoção | Administrador | O sistema deverá permitir a análise dos formulários submetidos pelos usuários externos. Deverá aparecer em ordem de envio, do mais antigo para o mais novo. Será possível descartar formulários que não atendam às necessidades básicas do animal. Os formulários aprovados serão  orientados a conversar com um voluntário sobre o processo de adoção definitivo. |
 | RF11 | Assinatura do termo de adoção | Administrador, Externo | O sistema deverá permitir o preenchimento e a assinatura eletrônica (via sistema integrado) do termo de adoção responsável, tanto do novo tutor do animal quanto do voluntário e das testemunhas. O termo ficará disponível por 3 dias úteis quando aprovada a adoção, e só será feita a entrega do animal após confirmação de todas as assinaturas necessárias. Assim que todas as assinaturas eletrônicas forem preenchidas, o sistema enviará uma notificação para o voluntário responsável pela adoção. O sistema deverá automaticamente mudar a situação do animal para ‘adotado’ quando o termo de adoção for devidamente preenchido. |
 
-![Diagrama de casos de uso](https://docs.google.com/document/d/1aLUlPIZ6-HiZjDtGhIqszxbbm5KbBycisJNX0ycRyTY/edit#heading=h.si5iepbirdfn)
+[Diagrama de casos de uso](https://docs.google.com/document/d/1aLUlPIZ6-HiZjDtGhIqszxbbm5KbBycisJNX0ycRyTY/edit#heading=h.si5iepbirdfn)
 
