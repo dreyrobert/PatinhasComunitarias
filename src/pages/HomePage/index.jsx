@@ -1,15 +1,16 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import '../../styles/HomePage.css'; // Importando o CSS específico
 
 const HomePage = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const goToRegister = () => {
-    history.push('/register');
+    navigate('/register');
   }
 
   return (
-    <div>
+    <div className="home-page">
       <h1>Welcome to the Animal Shelter</h1>
       <button onClick={goToRegister}>Register</button>
     </div>
