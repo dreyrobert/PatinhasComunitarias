@@ -13,7 +13,7 @@ const HomePage = () => {
     <div className="home-page">
       <div className="overlay">
         <h1>Adote um amigo hoje</h1>
-        <button onClick={goToRegister}>Register</button>
+        <button onClick={goToRegister}>Vamos lá!</button>
       </div>
         <img src={dog} alt="Dog" className="dogimage" />
     </div>

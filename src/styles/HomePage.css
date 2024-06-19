@@ -2,30 +2,30 @@
 
 .home-page {
   display: flex;
-  flex-direction: space-between;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-end;
+  justify-content: space-between;
   height: 100vh;
   background-color: #f0f0f0;
-  font-family: Arial, sans-serif;
 }
 
 .overlay {
+  top: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-    margin: 20px;
+  margin: auto auto;
 
 }
 .overlay h1 {
   font-size: 3rem;
   color: #01AFFA;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .overlay button {
-  padding: 20px 120px;
+  padding: 4% 120px;
   font-size: 30px;
   color: #fff;
   background-color: #FE2166;
@@ -40,6 +40,8 @@
 }
 
 .home-page img {
-  width: 40%;
-  max-width: auto;
+  width: 37%;
+  max-width: 560px;
+  min-width: 300px;
+  margin-right:200px;
 }

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
 import logo from '../assets/PC 2.png';
 const Navbar = () => {
   const isAdmin = true; // Exemplo de verificação de usuário admin(voluntário)
-
+  const location = useLocation();
   return (
   
     <nav className="navbar">
@@ -13,14 +13,16 @@ const Navbar = () => {
       </Link>
       
         <ul className="nav-list">
-          <li className="nav-item"><Link to="/about">SOBRE NOS</Link></li>
-          <li className="nav-item"><Link to="/animals">NOSSOS ANIMAIS</Link></li>
-          {isAdmin && <li className="nav-item"><Link to="/add-animal">ADICIONAR ANIMAIS</Link></li>}
-          <li className="nav-item"><Link to="/doacoes">APOIE AQUI</Link></li>
+          <li className="nav-item"><Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>SOBRE NÓS</Link></li>
+          <li className="nav-item"><Link to="/animals" className={location.pathname === '/animals' ? 'active' : ''}>NOSSOS ANIMAIS</Link></li>
+          {isAdmin && <li className="nav-item"><Link to="/add-animal" className={location.pathname === '/add-animal' ? 'active' : ''}>ADICIONAR ANIMAIS</Link></li>}
+          <li className="nav-item"><Link to="/doacoes" className={location.pathname === '/doacoes' ? 'active' : ''}>APOIE AQUI</Link></li>
+          {isAdmin && <li className="nav-item"><Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>DASHBOARD</Link></li>}
         </ul>
     </nav>
   );
 }
 
 export default Navbar;
+
 
