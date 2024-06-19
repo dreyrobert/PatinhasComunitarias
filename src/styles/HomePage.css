@@ -2,21 +2,29 @@
 
 .home-page {
   display: flex;
-  flex-direction: column;
+  flex-direction: space-between;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f9f9f9;
+  background-color: green;
   font-family: Arial, sans-serif;
 }
 
-.home-page h1 {
-  font-size: 2.5rem;
-  color: #333;
+.overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    margin: 20px;
+
+}
+.overlay h1 {
+  font-size: 3rem;
+  color: #01AFFA;
   margin-bottom: 20px;
 }
 
-.home-page button {
+.overlay button {
   padding: 10px 20px;
   font-size: 1rem;
   color: #fff;
@@ -31,3 +39,7 @@
   background-color: #0056b3;
 }
 
+.home-page img {
+  width: 40%;
+  max-width: auto;
+}
