@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: green;
+  background-color: #f0f0f0;
   font-family: Arial, sans-serif;
 }
 
@@ -25,18 +25,18 @@
 }
 
 .overlay button {
-  padding: 10px 20px;
-  font-size: 1rem;
+  padding: 20px 120px;
+  font-size: 30px;
   color: #fff;
-  background-color: #007bff;
+  background-color: #FE2166;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .home-page button:hover {
-  background-color: #0056b3;
+  background-color: #01AFFA;
 }
 
 .home-page img {
