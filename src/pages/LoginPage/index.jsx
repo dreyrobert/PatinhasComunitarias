@@ -1,12 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import "../../styles/LoginPage.css";
 const LoginPage = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <h1>LoginPage</h1>
+    <div className="login-page">
+      <div className="login-panel">
+
+      </div>
     </div>
   );
 }
