@@ -62,15 +62,21 @@ async function deleteUser(id) {
 }
 
 // Função para tornar um usuário administrador
-async function makeUserAdmin(id) {
+async function makeUserAdmin(id, isAdmin) {
+  const isAdminInt {
+    if isAdmin === 0{
+      isAdminInt = 0;
+    }
+    isAdminInt = 1;
+  }
   try {
     const result = await db.one(
-      'UPDATE users SET adm = 1 WHERE id = $1 RETURNING *',
-      [id]
+      'UPDATE users SET adm = $1 WHERE id = $2 RETURNING *',
+      [isAdminInt, id]
     );
     return result;
   } catch (error) {
-    console.error('Error making user admin:', error);
+    console.error(`Erro ao atualizar status de admin do usuário com ID ${id}:`, error);
     throw error;
   }
 }

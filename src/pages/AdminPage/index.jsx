@@ -20,20 +20,32 @@ const AdminPage = () => {
       .catch(error => console.error('Error fetching users:', error));
   }, []);
 
-  const makeAdmin = (id) => {
-    fetch(`${process.env.REACT_APP_API_URL}/users/${id}/admin`, { method: 'PUT' })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(updatedUser => {
-        console.log('Updated user:', updatedUser); // Log para verificar o usuário atualizado
-        setUsers(users.map(user => (user.id === id ? updatedUser : user)));
-      })
-      .catch(error => console.error('Error updating user:', error));
+  const makeAdmin = (id, currentAdminStatus) => {
+    const newAdminStatus = currentAdminStatus ? 0 : 1; // Inverte o status atual (0 -> 1, 1 -> 0)
+  
+    fetch(`${process.env.REACT_APP_API_URL}/users/${id}/admin`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ isAdmin: newAdminStatus }) // Envia 1 ou 0 como inteiro
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(updatedUser => {
+      console.log('Updated user:', updatedUser); // Log para verificar o usuário atualizado
+      setUsers(users.map(user => (user.id === id ? updatedUser : user)));
+    })
+    .catch(error => console.error('Error updating user:', error));
   };
+  
+  
+  
+  
 
   return (
     <div className="admin-page">
@@ -57,7 +69,9 @@ const AdminPage = () => {
                 <td>{user.email}</td>
                 <td>{user.adm ? 'Yes' : 'No'}</td>
                 <td>
-                  <button onClick={() => makeAdmin(user.id)}>Make Admin</button>
+                <button onClick={() => makeAdmin(user.id, user.adm)}>
+                   {user.adm ? 'Remove Admin' : 'Adicionar Admin'}
+                </button>
                 </td>
               </tr>
             ))
