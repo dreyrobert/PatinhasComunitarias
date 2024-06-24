@@ -63,16 +63,10 @@ async function deleteUser(id) {
 
 // Função para tornar um usuário administrador
 async function makeUserAdmin(id, isAdmin) {
-  const isAdminInt {
-    if isAdmin === 0{
-      isAdminInt = 0;
-    }
-    isAdminInt = 1;
-  }
   try {
     const result = await db.one(
       'UPDATE users SET adm = $1 WHERE id = $2 RETURNING *',
-      [isAdminInt, id]
+      [isAdmin, id]
     );
     return result;
   } catch (error) {

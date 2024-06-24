@@ -21,7 +21,10 @@ const AdminPage = () => {
   }, []);
 
   const makeAdmin = (id, currentAdminStatus) => {
-    const newAdminStatus = currentAdminStatus ? 0 : 1; // Inverte o status atual (0 -> 1, 1 -> 0)
+    console.log('alterando adm|');
+    console.log(id, currentAdminStatus);
+
+    const newAdminStatus = parseInt(currentAdminStatus) ? 0 : 1; // Inverte o status atual (0 -> 1, 1 -> 0)
   
     fetch(`${process.env.REACT_APP_API_URL}/users/${id}/admin`, {
       method: 'PUT',
@@ -43,14 +46,11 @@ const AdminPage = () => {
     .catch(error => console.error('Error updating user:', error));
   };
   
-  
-  
-  
-
   return (
     <div className="admin-page">
-      <h2>User Administration</h2>
-      <table>
+      <div className="admin-panel">
+       <h2>User Administration</h2>
+       <table>
         <thead>
           <tr>
             <th>ID</th>
@@ -82,6 +82,7 @@ const AdminPage = () => {
           )}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };
