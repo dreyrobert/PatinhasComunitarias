@@ -17,9 +17,9 @@ function LoginPage() {
             navigate('/dashboard'); // Redireciona para '/dashboard' ou outra rota desejada
         } catch (error) {
             if (error.response.status === 404) {
-                setMessage('User not found');
+                setMessage('Usuário não encontrado');
             } else if (error.response.status === 401) {
-                setMessage('Invalid password');
+                setMessage('Senha incorreta');
             } else {
                 setMessage('Login failed');
             }
@@ -42,7 +42,7 @@ function LoginPage() {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Password:</label>
+                    <label>Senha:</label>
                     <input
                         type="password"
                         value={password}
@@ -50,11 +50,11 @@ function LoginPage() {
                         required
                     />
                 </div>
-                <button type="submit" className="btn-primary">Login</button>
+                <button type="submit" className="btn-primary">Entrar</button>
             </form>
             {message && <p className="message">{message}</p>}
             <p>
-                Don't have an account? <Link to="/register">Register here</Link>
+                Não possui conta? <Link to="/register">Registre Aqui</Link>
             </p>
         </div>
         </div>

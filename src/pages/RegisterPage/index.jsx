@@ -18,9 +18,9 @@ function RegisterPage() {
             navigate('/login');
         } catch (error) {
             if (error.response && error.response.status === 400) {
-                setMessage('Email already registered');
+                setMessage('Email já cadastrado');
             } else {
-                setMessage('Registration failed');
+                setMessage('Erro ao registrar');
             }
             console.error('Error registering:', error);
         }
@@ -29,10 +29,10 @@ function RegisterPage() {
     return (
     <div className="register-page">
         <div className="auth-container">
-            <h1>Register</h1>
+            <h1>Registrar</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Name:</label>
+                    <label>Nome:</label>
                     <input
                         type="text"
                         value={name}
@@ -50,7 +50,7 @@ function RegisterPage() {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Password:</label>
+                    <label>Senha:</label>
                     <input
                         type="password"
                         value={password}
@@ -58,11 +58,11 @@ function RegisterPage() {
                         required
                     />
                 </div>
-                <button type="submit" className="btn-primary">Register</button>
+                <button type="submit" className="btn-primary">Registrar</button>
             </form>
             {message && <p className="message">{message}</p>}
             <p>
-                Already have an account? <Link to="/login">Login here</Link>
+                Já possui conta? <Link to="/login">Entrar aqui</Link>
             </p>
         </div>
         </div>
