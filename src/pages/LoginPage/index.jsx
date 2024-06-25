@@ -14,7 +14,7 @@ function LoginPage() {
         try {
             const response = await api.post('/login', { email, password });
             // Se o login for bem-sucedido, redireciona para outra página
-            navigate('/dashboard'); // Redireciona para '/dashboard' ou outra rota desejada
+            navigate('/'); 
         } catch (error) {
             if (error.response.status === 404) {
                 setMessage('Usuário não encontrado');
