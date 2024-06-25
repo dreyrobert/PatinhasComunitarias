@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Navbar.css';
-import logo from '../assets/PC 2.png';
+import logo from '../assets/logo.png';
 const Navbar = () => {
   const isAdmin = true; // Exemplo de verificação de usuário admin(voluntário)
   const location = useLocation();

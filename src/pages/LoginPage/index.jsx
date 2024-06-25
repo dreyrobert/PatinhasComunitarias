@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import api from '../../services/api';
 import '../../styles/LoginPage.css';
 
@@ -7,21 +7,28 @@ function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate(); // Utilize useNavigate para navegação
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await api.post('/login', { email, password });
-            setMessage('Login successful');
-            // Handle successful login, e.g., store token, redirect, etc.
+            // Se o login for bem-sucedido, redireciona para outra página
+            navigate('/dashboard'); // Redireciona para '/dashboard' ou outra rota desejada
         } catch (error) {
-            setMessage('Login failed');
-            console.error(error);
+            if (error.response.status === 404) {
+                setMessage('User not found');
+            } else if (error.response.status === 401) {
+                setMessage('Invalid password');
+            } else {
+                setMessage('Login failed');
+            }
+            console.error('Error logging in:', error);
         }
     };
 
     return (
-      <div className="register-page">
+        <div className="register-page">
         <div className="auth-container">
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
@@ -53,5 +60,4 @@ function LoginPage() {
         </div>
     );
 }
-
 export default LoginPage;

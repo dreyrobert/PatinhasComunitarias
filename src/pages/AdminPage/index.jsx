@@ -42,20 +42,20 @@ function AdminPage() {
     return (
         <div className ="admin-page">
         <div className="user-list-container">
-            <h2>User List</h2>
+            <h2>Lista de Usuários</h2>
             <div className="search-bar">
                 <input
                     type="text"
-                    placeholder="Search by email"
+                    placeholder="Pesquisar por E-mail"
                     value={searchEmail}
                     onChange={(e) => setSearchEmail(e.target.value)}
                 />
-                <button onClick={handleSearch}>Search</button>
+                <button onClick={handleSearch}>Pesquisar</button>
             </div>
             <div className="users">
                 {searchResult.length > 0 ? (
                     <div>
-                        <h3>Search Result:</h3>
+                        <h3>Resultado:</h3>
                         <ul>
                             {searchResult.map(user => (
                                 <li key={user.id}>
@@ -69,13 +69,13 @@ function AdminPage() {
                     </div>
                 ) : (
                     <div>
-                        <h3>All Users:</h3>
+                        <h3>Todos os usuários:</h3>
                         <ul>
                             {users.map(user => (
                                 <li key={user.id}>
                                     <span>{user.name} - {user.email}</span>
                                     <button onClick={() => toggleAdmStatus(user.id)}>
-                                        {user.adm === 1 ? 'Remove Volunteer' : 'Add Volunteer'}
+                                        {user.adm === 1 ? 'Remover Voluntário' : 'Adicionar Voluntário'}
                                     </button>
                                 </li>
                             ))}

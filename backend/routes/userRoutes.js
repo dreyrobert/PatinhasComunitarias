@@ -8,4 +8,6 @@ router.get('/users', userController.getAllUsers);
 router.get('/users/search', userController.findUserByEmail);
 router.put('/users/:id', userController.updateUserAdm);
 
+
+router.post('/login', authController.login);
 module.exports = router;
