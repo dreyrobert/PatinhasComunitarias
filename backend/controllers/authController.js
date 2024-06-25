@@ -6,7 +6,7 @@ exports.login = async (req, res) => {
 
     try {
         // Verifica se o usuário existe no banco de dados
-        const user = await db.oneOrNone('SELECT * FROM users WHERE email = $1', email);
+        const user = await db.oneOrNone('SELECT id, name, email, adm FROM users WHERE email = $1', email);
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' });

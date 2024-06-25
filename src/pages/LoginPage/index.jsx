@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate  } from 'react-router-dom';
 import api from '../../services/api';
 import '../../styles/LoginPage.css';
+import { AuthContext } from '../../context/AuthContext';
 
 function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate(); // Utilize useNavigate para navegação
+    const { login, setUser } = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const response = await api.post('/login', { email, password });
-            // Se o login for bem-sucedido, redireciona para outra página
+            const userData = response.data;
+            setUser(userData);
+            login(userData);
             navigate('/'); 
         } catch (error) {
             if (error.response.status === 404) {
