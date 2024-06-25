@@ -1,0 +1,80 @@
+Administrador
+--
+Nome_Completo string INDEX
+Senha string
+E_mail string
+
+Adotante
+--
+E_mail string INDEX
+Alimentacao int
+CPF string
+Tipo_Moradia int
+Telefone string
+Telefone_2 string NULL
+Profissao string
+Logradouro string
+Bairro string
+Cidade string
+CEP string
+Ja_teve_animais_antes boolean
+Instagram string NULL
+Situacao_ultimo_animal int
+Moradia_telada boolean
+Nome_Completo string
+
+Animais
+--
+ID int INDEX
+Nome string
+Especie string
+Raca string
+Situacao string
+URL_midia string NULL
+
+Adota
+--
+Adotante_Email string INDEX FK >- Adotante.E_mail
+Animal_ID int INDEX FK >- Animais.ID
+
+Historico_de_Saude
+--
+ID int INDEX
+Animal_ID int INDEX FK >- Animais.ID
+Alergias string
+Data_Registro date
+Condicoes_Medicas string
+Procedimentos_Cirurgicos string
+
+Procedimentos
+--
+ID int INDEX
+Animal_ID int INDEX FK >- Animais.ID
+Data date
+Observacoes text NULL
+Tipo string
+
+Vacinas
+--
+ID int INDEX
+Procedimento_ID int INDEX FK >- Procedimentos.ID
+Proxima_Dose date
+
+Exames
+--
+ID int INDEX
+Procedimento_ID int INDEX FK >- Procedimentos.ID
+Resultado text
+
+Gastos
+--
+ID int INDEX
+Status string
+Data date
+Descricao text NULL
+Categoria string
+Valor decimal
+Metodo_Pagamento int
+Numero_Transacao string
+Conta string
+Tags string NULL
