@@ -1,90 +1,91 @@
 import React, { useState, useEffect } from 'react';
-import "../../styles/AdminPage.css";
+import api from '../../services/api';
+import '../../styles/AdminPage.css';
 
-const AdminPage = () => {
-  const [users, setUsers] = useState([]);
+function AdminPage() {
+    const [users, setUsers] = useState([]);
+    const [searchEmail, setSearchEmail] = useState('');
+    const [searchResult, setSearchResult] = useState([]);
+    const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    console.log('Fetching users from API...');
-    fetch(`${process.env.REACT_APP_API_URL}/users`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+    useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    const fetchUsers = async () => {
+        try {
+            const response = await api.get('/users');
+            setUsers(response.data);
+        } catch (error) {
+            console.error('Error fetching users:', error);
         }
-        return response.json();
-      })
-      .then(data => {
-        console.log('Fetched users:', data); // Log para verificar os dados
-        setUsers(data);
-      })
-      .catch(error => console.error('Error fetching users:', error));
-  }, []);
+    };
 
-  const makeAdmin = (id, currentAdminStatus) => {
-    console.log('alterando adm|');
-    console.log(id, currentAdminStatus);
+    const handleSearch = async () => {
+        try {
+            const response = await api.get(`/users/search?email=${searchEmail}`);
+            setSearchResult(response.data);
+        } catch (error) {
+            console.error('Error searching user by email:', error);
+        }
+    };
 
-    const newAdminStatus = parseInt(currentAdminStatus) ? 0 : 1; // Inverte o status atual (0 -> 1, 1 -> 0)
-  
-    fetch(`${process.env.REACT_APP_API_URL}/users/${id}/admin`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ isAdmin: newAdminStatus }) // Envia 1 ou 0 como inteiro
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
+    const toggleAdmStatus = async (id) => {
+      try {
+          await api.put(`/users/${id}`);
+          fetchUsers(); // Atualiza a lista de usuários após a alteração
+      } catch (error) {
+          console.error('Error updating user adm status:', error);
       }
-      return response.json();
-    })
-    .then(updatedUser => {
-      console.log('Updated user:', updatedUser); // Log para verificar o usuário atualizado
-      setUsers(users.map(user => (user.id === id ? updatedUser : user)));
-    })
-    .catch(error => console.error('Error updating user:', error));
   };
-  
-  return (
-    <div className="admin-page">
-      <div className="admin-panel">
-       <h2>User Administration</h2>
-       <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Admin</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.length > 0 ? (
-            users.map(user => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.adm ? 'Yes' : 'No'}</td>
-                <td>
-                <button onClick={() => makeAdmin(user.id, user.adm)}>
-                   {user.adm ? 'Remove Admin' : 'Adicionar Admin'}
-                </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="5">No users found.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-      </div>
-    </div>
-  );
-};
+
+    return (
+        <div className ="admin-page">
+        <div className="user-list-container">
+            <h2>User List</h2>
+            <div className="search-bar">
+                <input
+                    type="text"
+                    placeholder="Search by email"
+                    value={searchEmail}
+                    onChange={(e) => setSearchEmail(e.target.value)}
+                />
+                <button onClick={handleSearch}>Search</button>
+            </div>
+            <div className="users">
+                {searchResult.length > 0 ? (
+                    <div>
+                        <h3>Search Result:</h3>
+                        <ul>
+                            {searchResult.map(user => (
+                                <li key={user.id}>
+                                    <span>{user.name} - {user.email}</span>
+                                    <button onClick={() => toggleAdmStatus(user.id)}>
+                                        {user.adm === 1 ? 'Remove Volunteer' : 'Add Volunteer'}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ) : (
+                    <div>
+                        <h3>All Users:</h3>
+                        <ul>
+                            {users.map(user => (
+                                <li key={user.id}>
+                                    <span>{user.name} - {user.email}</span>
+                                    <button onClick={() => toggleAdmStatus(user.id)}>
+                                        {user.adm === 1 ? 'Remove Volunteer' : 'Add Volunteer'}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
+        </div>
+        </div>
+    );
+}
 
 export default AdminPage;

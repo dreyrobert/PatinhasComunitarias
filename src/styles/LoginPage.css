@@ -1,65 +1,74 @@
-.login-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+.register-page {
+  margin: 0;
   background-color: #FE2166;
-}
-
-.login-panel {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  background-color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  height: 100vh;
 }
 
-.login-panel h2 {
+.auth-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.auth-container h1 {
   margin-bottom: 20px;
 }
 
-.login-panel form {
+.auth-container form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-panel input {
-  margin-bottom: 10px;
+.auth-container .form-group {
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.auth-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.auth-container input {
+  width: calc(100% - 20px);
   padding: 10px;
-  width: 200px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 5px;
 }
 
-.login-panel button {
-  padding: 10px 20px;
-  background-color: #FE2166;
-  color: #fff;
+.auth-container .btn-primary {
+  width: 100%;
+  padding: 10px;
+  background: #FE2166;
+  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
 }
 
-.login-panel p {
+.auth-container .btn-primary:hover {
+  background: #e01e5a;
+}
+
+.auth-container p {
   margin-top: 20px;
 }
 
-.link {
-  color: #FE2166;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.error {
-  color: red;
+.auth-container .message {
   margin-top: 10px;
-}
-
-.success {
-  color: green;
-  margin-top: 10px;
+  color: #ff0000;
+  font-weight: bold;
 }

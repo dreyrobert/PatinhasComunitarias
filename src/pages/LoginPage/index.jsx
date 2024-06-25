@@ -1,64 +1,57 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import "../../styles/LoginPage.css";
+import { Link } from 'react-router-dom';
+import api from '../../services/api';
+import '../../styles/LoginPage.css';
 
-const LoginPage = () => {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function LoginPage() {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    
-    try {
-      const response = await fetch('http://localhost:3001/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await api.post('/login', { email, password });
+            setMessage('Login successful');
+            // Handle successful login, e.g., store token, redirect, etc.
+        } catch (error) {
+            setMessage('Login failed');
+            console.error(error);
+        }
+    };
 
-      if (response.ok) {
-        const data = await response.json();
-        // Aqui você pode salvar o token de autenticação em localStorage ou sessionStorage
-        console.log('Login bem-sucedido:', data);
-        navigate('/dashboard'); // Exemplo de navegação após login bem-sucedido
-      } else {
-        const error = await response.json();
-        console.error('Erro ao fazer login:', error);
-        // Tratar erro de login, exibir mensagem de erro, etc.
-      }
-    } catch (error) {
-      console.error('Erro inesperado:', error);
-    }
-  };
-
-  return (
-    <div className="login-page">
-      <div className="login-panel">
-        <h2>Login</h2>
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Senha"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <button type="submit">Entrar</button>
-        </form>
-        <p>Não possui cadastro? <span onClick={() => navigate('/register')} className="link">Clique aqui para se registrar</span></p>
-      </div>
-    </div>
-  );
+    return (
+      <div className="register-page">
+        <div className="auth-container">
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label>Email:</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Password:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit" className="btn-primary">Login</button>
+            </form>
+            {message && <p className="message">{message}</p>}
+            <p>
+                Don't have an account? <Link to="/register">Register here</Link>
+            </p>
+        </div>
+        </div>
+    );
 }
 
 export default LoginPage;
