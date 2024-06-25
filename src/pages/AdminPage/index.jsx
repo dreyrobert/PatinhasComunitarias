@@ -4,88 +4,67 @@ import '../../styles/AdminPage.css';
 
 function AdminPage() {
     const [users, setUsers] = useState([]);
-    const [searchEmail, setSearchEmail] = useState('');
-    const [searchResult, setSearchResult] = useState([]);
-    const [message, setMessage] = useState('');
+    const [search, setSearch] = useState('');
 
     useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                const response = await api.get('/users');
+                setUsers(response.data);
+            } catch (error) {
+                console.error('Error fetching users:', error);
+            }
+        };
+
         fetchUsers();
     }, []);
 
-    const fetchUsers = async () => {
+    const toggleAdmStatus = async (userId, currentStatus) => {
         try {
-            const response = await api.get('/users');
-            setUsers(response.data);
+            const response = await api.put(`/users/${userId}`, { adm: currentStatus === 0 ? 1 : 0 });
+            const updatedUser = response.data;
+            setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
         } catch (error) {
-            console.error('Error fetching users:', error);
+            console.error('Error updating user adm status:', error);
         }
     };
 
-    const handleSearch = async () => {
-        try {
-            const response = await api.get(`/users/search?email=${searchEmail}`);
-            setSearchResult(response.data);
-        } catch (error) {
-            console.error('Error searching user by email:', error);
-        }
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
     };
 
-    const toggleAdmStatus = async (id) => {
-      try {
-          await api.put(`/users/${id}`);
-          fetchUsers(); // Atualiza a lista de usuários após a alteração
-      } catch (error) {
-          console.error('Error updating user adm status:', error);
-      }
-  };
+    const filteredUsers = users.filter(user =>
+        user.email.toLowerCase().includes(search.toLowerCase())
+    );
 
     return (
-        <div className ="admin-page">
-        <div className="user-list-container">
-            <h2>Lista de Usuários</h2>
-            <div className="search-bar">
-                <input
-                    type="text"
-                    placeholder="Pesquisar por E-mail"
-                    value={searchEmail}
-                    onChange={(e) => setSearchEmail(e.target.value)}
-                />
-                <button onClick={handleSearch}>Pesquisar</button>
-            </div>
-            <div className="users">
-                {searchResult.length > 0 ? (
-                    <div>
-                        <h3>Resultado:</h3>
-                        <ul>
-                            {searchResult.map(user => (
-                                <li key={user.id}>
-                                    <span>{user.name} - {user.email}</span>
-                                    <button onClick={() => toggleAdmStatus(user.id)}>
-                                        {user.adm === 1 ? 'Remove Volunteer' : 'Add Volunteer'}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
+        <div className='admin-page'>
+        <div className="users-container">
+            <h1>Lista de Usuários</h1>
+            <input
+                type="text"
+                placeholder="Pesquisar por E-mail"
+                value={search}
+                onChange={handleSearch}
+                className="search-bar"
+            />
+            <div className="list-container">
+                {filteredUsers.map(user => (
+                    <div key={user.id} className="user-item">
+                        <span>{user.email}</span>
+                        <button
+                            className={`btn-toggle-adm ${user.adm === 0 ? 'btn-add' : 'btn-remove'}`}
+                            onClick={() => toggleAdmStatus(user.id, user.adm)}
+                        >
+                            {user.adm === 0 ? 'Adicionar Voluntário' : 'Remover Voluntário'}
+                        </button>
                     </div>
-                ) : (
-                    <div>
-                        <h3>Todos os usuários:</h3>
-                        <ul>
-                            {users.map(user => (
-                                <li key={user.id}>
-                                    <span>{user.name} - {user.email}</span>
-                                    <button onClick={() => toggleAdmStatus(user.id)}>
-                                        {user.adm === 1 ? 'Remover Voluntário' : 'Adicionar Voluntário'}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                )}
+                ))}
             </div>
         </div>
         </div>
     );
 }
+
 
 export default AdminPage;

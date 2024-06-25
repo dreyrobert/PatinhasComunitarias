@@ -1,11 +1,24 @@
 const db = require('../config/db');
-
-// Create user
-exports.createUser = async (req, res) => {
+const bcrypt = require('bcrypt');
+// Register user
+exports.register = async (req, res) => {
     const { name, email, password } = req.body;
+
     try {
-        await db.none('INSERT INTO users(name, email, password, adm) VALUES($1, $2, $3, 0)', [name, email, password]);
-        res.status(201).send('User added successfully');
+        // Verificar se o email já existe
+        const existingUser = await db.oneOrNone('SELECT * FROM users WHERE email = $1', email);
+
+        if (existingUser) {
+            return res.status(400).json({ message: 'Email already registered' });
+        }
+
+        // Inserir novo usuário no banco de dados
+        const newUser = await db.one(
+            'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *',
+            [name, email, password]
+        );
+
+        res.status(201).json(newUser);
     } catch (error) {
         res.status(500).send(error.message);
     }

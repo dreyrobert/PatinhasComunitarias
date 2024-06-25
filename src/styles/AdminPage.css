@@ -6,74 +6,64 @@
   height: 100vh;
 }
 
-.user-list-container {
-  max-width: 800px;
-  margin: 20px auto;
+.users-container {
+  width: 80%;
+  margin: 0 auto;
   padding: 20px;
-  background: #ffffff;
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.user-list-container h2 {
-  margin-bottom: 20px;
-  text-align: center;
+  align-items: center;
 }
 
 .search-bar {
+  width: 50%;
+  padding: 10px;
   margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.search-bar input {
-  padding: 10px;
-  margin-right: 10px;
-  width: 300px;
   border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 4px;
 }
 
-.search-bar button {
-  padding: 10px 20px;
-  background-color: #FE2166;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.users {
-  margin-top: 20px;
-}
-
-.users ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.users li {
-  margin-bottom: 10px;
+.list-container {
+  max-height: 400px; /* Define a altura fixa do contêiner */
+  overflow-y: auto; /* Habilita a barra de rolagem vertical */
+  border: 1px solid #ddd;
   padding: 10px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
+  border-radius: 4px;
+}
+
+.user-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.users li button {
-  padding: 8px 12px;
-  background-color: #FE2166;
+.user-item:last-child {
+  border-bottom: none;
+}
+
+.btn-toggle-adm {
   color: white;
   border: none;
-  border-radius: 5px;
+  padding: 5px 10px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
 }
 
-.users li button:hover {
-  background-color: #e01e5a;
+.btn-add {
+    background-color: green;
+}
+
+.btn-add:hover {
+    background-color: darkgreen;
+}
+
+.btn-remove {
+    background-color: red;
+}
+
+.btn-remove:hover {
+    background-color: darkred;
 }

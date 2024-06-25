@@ -4,29 +4,30 @@ import api from '../../services/api';
 import '../../styles/LoginPage.css';
 
 function RegisterPage() {
-    const [name, setName] = useState('');
+  const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await api.post('/users', { name, email, password });
-            setMessage('User registered successfully');
-            setTimeout(() => {
-                navigate('/login');
-            }, 2000); // Aguarda 2 segundos antes de redirecionar
+            const response = await api.post('/register', { name, email, password });
+            // Se o registro for bem-sucedido, redireciona para a página de login
+            navigate('/login');
         } catch (error) {
-            setMessage('Registration failed');
-            console.error(error);
+            if (error.response && error.response.status === 400) {
+                setMessage('Email already registered');
+            } else {
+                setMessage('Registration failed');
+            }
+            console.error('Error registering:', error);
         }
     };
 
     return (
-      <div className="register-page">
+    <div className="register-page">
         <div className="auth-container">
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
@@ -57,7 +58,7 @@ function RegisterPage() {
                         required
                     />
                 </div>
-                <button type="submit" className="btn-primary" >Register</button>
+                <button type="submit" className="btn-primary">Register</button>
             </form>
             {message && <p className="message">{message}</p>}
             <p>
@@ -67,5 +68,4 @@ function RegisterPage() {
         </div>
     );
 }
-
 export default RegisterPage;
