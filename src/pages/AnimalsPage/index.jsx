@@ -6,9 +6,11 @@ const AnimalsPage = () => {
   const navigate = useNavigate();
 
   return (
+    <div>
     <div class="mt-[120px]">
       <h1>AnimalsPage</h1>
       <PetCard />
+    </div>
     </div>
   );
 }
