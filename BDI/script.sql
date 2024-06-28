@@ -13,12 +13,12 @@ CREATE TABLE Administrador (
 
 -- Criação da tabela Animais
 CREATE TABLE Animais (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     especie VARCHAR(100) NOT NULL,
     raca VARCHAR(100) NOT NULL,
     idade INT NOT NULL,
-    sexo TINYINT(1) NOT NULL,
+    sexo SMALLINT NOT NULL,
     descricao VARCHAR(100) NULL,
     url_midia VARCHAR(100) NOT NULL,
     situacao VARCHAR(100) NOT NULL
