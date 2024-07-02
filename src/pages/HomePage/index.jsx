@@ -1,16 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/HomePage.css';
 import dog from "../../assets/doghome.png";
-import { AuthContext } from '../../context/AuthContext';
 const HomePage = () => {
   const navigate = useNavigate();
 
-  const { isAuthenticated, user } = useContext(AuthContext);
-
-
   const gotoRoute = () => {
-    isAuthenticated ? navigate('/animals') : navigate('/login');
+    navigate('/animals');
   }
 
   return (

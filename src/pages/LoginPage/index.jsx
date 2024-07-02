@@ -1,67 +1,47 @@
-import React, { useContext, useState } from 'react';
-import { Link, useNavigate  } from 'react-router-dom';
+import React, { useState } from 'react';
 import api from '../../services/api';
+import { useNavigate } from 'react-router-dom';
 import '../../styles/LoginPage.css';
-import { AuthContext } from '../../context/AuthContext';
 
-function LoginPage() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-    const navigate = useNavigate(); // Utilize useNavigate para navegação
-    const { login, setUser } = useContext(AuthContext);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await api.post('/login', { email, password });
-            const userData = response.data;
-            setUser(userData);
-            login(userData);
-            navigate('/'); 
-        } catch (error) {
-            if (error.response.status === 404) {
-                setMessage('Usuário não encontrado');
-            } else if (error.response.status === 401) {
-                setMessage('Senha incorreta');
-            } else {
-                setMessage('Login failed');
-            }
-            console.error('Error logging in:', error);
-        }
-    };
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setpassword] = useState('');
+  const navigate = useNavigate();
 
-    return (
-        <div className="register-page">
-        <div className="auth-container">
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Senha:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit" className="btn-primary">Entrar</button>
-            </form>
-            {message && <p className="message">{message}</p>}
-            <p>
-                Não possui conta? <Link to="/register">Registre Aqui</Link>
-            </p>
-        </div>
-        </div>
-    );
-}
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await api.post('admin/login', { email, password });
+      localStorage.setItem('token', response.data.token);
+      navigate('/admin'); // Redireciona para a página de administração após login
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      alert('Credenciais inválidas');
+    }
+  };
+
+  return (
+    <div className="login-page">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="senha"
+          value={password}
+          onChange={(e) => setpassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
+};
+
 export default LoginPage;

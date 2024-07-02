@@ -1,74 +1,38 @@
-.register-page {
-  margin: 0;
-  background-color: #FE2166;
+.login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: #f0f0f0;
 }
 
-.auth-container {
+.login-page form {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+
+.login-page form input {
   width: 100%;
-  max-width: 400px;
-  margin: 20px;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.auth-container h1 {
-  margin-bottom: 20px;
-}
-
-.auth-container form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.auth-container .form-group {
-  width: 100%;
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.auth-container label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.auth-container input {
-  width: calc(100% - 20px);
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.auth-container .btn-primary {
+.login-page form button {
   width: 100%;
-  padding: 10px;
-  background: #FE2166;
-  color: white;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  background: #007bff;
   border: none;
+  color: #fff;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s;
 }
 
-.auth-container .btn-primary:hover {
-  background: #e01e5a;
-}
-
-.auth-container p {
-  margin-top: 20px;
-}
-
-.auth-container .message {
-  margin-top: 10px;
-  color: #ff0000;
-  font-weight: bold;
+.login-page form button:hover {
+  background: #0056b3;
 }
