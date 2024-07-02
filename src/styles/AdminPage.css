@@ -1,69 +1,68 @@
 .admin-page {
-  background-color: #f0f0f0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  padding: 2rem;
+  background-color: #f8f9fa;
 }
 
-.users-container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  align-items: center;
+.admin-page h1 {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.search-bar {
-  width: 50%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.admin-page ul {
+  list-style: none;
+  padding: 0;
 }
 
-.list-container {
-  max-height: 400px; /* Define a altura fixa do contêiner */
-  overflow-y: auto; /* Habilita a barra de rolagem vertical */
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-.user-item {
+.admin-page ul li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  background: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.user-item:last-child {
-  border-bottom: none;
-}
-
-.btn-toggle-adm {
-  color: white;
+.admin-page ul li button {
+  background: #dc3545;
   border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.btn-add {
-    background-color: green;
+.admin-page ul li button:hover {
+  background: #c82333;
 }
 
-.btn-add:hover {
-    background-color: darkgreen;
+.admin-page form {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.btn-remove {
-    background-color: red;
+.admin-page form input {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.btn-remove:hover {
-    background-color: darkred;
+.admin-page form button {
+  padding: 0.5rem;
+  margin: 1rem 0;
+  background: #007bff;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.admin-page form button:hover {
+  background: #0056b3;
 }

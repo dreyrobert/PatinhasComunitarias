@@ -3,68 +3,78 @@ import api from '../../services/api';
 import '../../styles/AdminPage.css';
 
 function AdminPage() {
-    const [users, setUsers] = useState([]);
-    const [search, setSearch] = useState('');
+  const [admins, setAdmins] = useState([]);
+  const [newAdmin, setNewAdmin] = useState({ nome_completo: '', email: '', senha: '' });
 
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                const response = await api.get('/users');
-                setUsers(response.data);
-            } catch (error) {
-                console.error('Error fetching users:', error);
-            }
-        };
+  useEffect(() => {
+    const fetchAdmins = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await api.get('/admin/admins', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        setAdmins(response.data);
+      } catch (error) {
+        console.error('Erro ao buscar administradores:', error);
+        alert('Você não está autorizado a visualizar esta página');
+      }
+    };
+    fetchAdmins();
+  }, []);
 
-        fetchUsers();
-    }, []);
-
-    const toggleAdmStatus = async (userId, currentStatus) => {
-        try {
-            const response = await api.put(`/users/${userId}`, { adm: currentStatus === 0 ? 1 : 0 });
-            const updatedUser = response.data;
-            setUsers(users.map(user => (user.id === updatedUser.id ? updatedUser : user)));
-        } catch (error) {
-            console.error('Error updating user adm status:', error);
+  const handleDelete = async (email) => {
+    try {
+      const token = localStorage.getItem('token');
+      await api.delete(`/admin/${email}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-    };
+      });
+      setAdmins(admins.filter(admin => admin.email !== email));
+    } catch (error) {
+      console.error('Erro ao deletar administrador:', error);
+      alert('Você não está autorizado a deletar este administrador');
+    }
+  };
 
-    const handleSearch = (e) => {
-        setSearch(e.target.value);
-    };
+  const handleAddAdmin = async (e) => {
+    e.preventDefault();
+    try {
+      const token = localStorage.getItem('token');
+      await api.post('/admin/register', newAdmin, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setAdmins([...admins, newAdmin]);
+      setNewAdmin({ nome_completo: '', email: '', senha: '' });
+    } catch (error) {
+      console.error('Erro ao adicionar administrador:', error);
+      alert('Você não está autorizado a adicionar este administrador');
+    }
+  };
 
-    const filteredUsers = users.filter(user =>
-        user.email.toLowerCase().includes(search.toLowerCase())
-    );
-
-    return (
-        <div className='admin-page'>
-        <div className="users-container">
-            <h1>Lista de Usuários</h1>
-            <input
-                type="text"
-                placeholder="Pesquisar por E-mail"
-                value={search}
-                onChange={handleSearch}
-                className="search-bar"
-            />
-            <div className="list-container">
-                {filteredUsers.map(user => (
-                    <div key={user.id} className="user-item">
-                        <span>{user.email}</span>
-                        <button
-                            className={`btn-toggle-adm ${user.adm === 0 ? 'btn-add' : 'btn-remove'}`}
-                            onClick={() => toggleAdmStatus(user.id, user.adm)}
-                        >
-                            {user.adm === 0 ? 'Adicionar Voluntário' : 'Remover Voluntário'}
-                        </button>
-                    </div>
-                ))}
-            </div>
-        </div>
-        </div>
-    );
+  return (
+    <div className="admin-page">
+      <h1>Admin Page</h1>
+      <form onSubmit={handleAddAdmin}>
+        <input type="text" placeholder="Full Name" value={newAdmin.nome_completo} onChange={(e) => setNewAdmin({ ...newAdmin, nome_completo: e.target.value })} required />
+        <input type="email" placeholder="Email" value={newAdmin.email} onChange={(e) => setNewAdmin({ ...newAdmin, email: e.target.value })} required />
+        <input type="password" placeholder="Password" value={newAdmin.senha} onChange={(e) => setNewAdmin({ ...newAdmin, senha: e.target.value })} required />
+        <button type="submit">Add Admin</button>
+      </form>
+      <ul>
+        {admins.map(admin => (
+          <li key={admin.email}>
+            {admin.nome_completo} ({admin.email}) 
+            <button onClick={() => handleDelete(admin.email)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
-
 
 export default AdminPage;
