@@ -54,7 +54,6 @@ const AdminPage = () => {
 
     return (
         <div className="admin-page">
-            <h1>Administração</h1>
             <form onSubmit={handleSubmit} className="admin-form">
                 <input
                     type="text"

@@ -1,7 +1,9 @@
 .admin-page {
-  padding: 2rem;
-  background-color: #f8f9fa;
+  width: 70%; /* Ajuste o tamanho conforme necessário */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 20px; /* Adiciona algum espaço interno */
 }
+
 
 .admin-page h1 {
   text-align: center;
