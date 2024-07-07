@@ -1,28 +1,29 @@
-import React, { useState } from 'react';
-import api from '../../services/api';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+import api from '../../services/api';
 import '../../styles/LoginPage.css';
-
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
-  const [password, setpassword] = useState('');
+  const [senha, setSenha] = useState('');
+  const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await api.post('admin/login', { email, password });
-      localStorage.setItem('token', response.data.token);
-      navigate('/admin'); // Redireciona para a página de administração após login
-    } catch (error) {
-      console.error('Erro ao fazer login:', error);
-      alert('Credenciais inválidas');
+      const response = await api.post('/admin/login', { email, senha });
+      login(response.data.token);
+      navigate('/');
+    } catch (err) {
+      console.error('Login failed', err);
     }
   };
 
   return (
     <div className="login-page">
+      <h1>Voluntário</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -33,9 +34,9 @@ const LoginPage = () => {
         />
         <input
           type="password"
-          placeholder="senha"
-          value={password}
-          onChange={(e) => setpassword(e.target.value)}
+          placeholder="Senha"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
           required
         />
         <button type="submit">Login</button>
