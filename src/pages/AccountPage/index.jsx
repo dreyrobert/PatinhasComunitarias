@@ -6,9 +6,8 @@ import '../../styles/AccountPage.css';
 const AccountPage = () => {
   const { token, user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
-    nome_completo: `${user.nome_completo}`,
-    email: `${user.email}`,
-    senha_atual: '',
+    nome_completo: `${localStorage.getItem('nome_completo')}`,
+    email: `${localStorage.getItem('email')}`,
     nova_senha: ''
   });
 
@@ -22,10 +21,12 @@ const AccountPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { nome_completo, email, senha_atual, nova_senha } = formData;
+      const email_antigo = user.email;
+      const { nome_completo, email, nova_senha, } = formData;
+      console.log (formData);
       await api.put(
-        '/admin/me',
-        { nome_completo, email, senha_atual, nova_senha },
+        '/admin/update',
+        { nome_completo, email_antigo, email, nova_senha },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert('Dados atualizados com sucesso!');
@@ -53,14 +54,6 @@ const AccountPage = () => {
           type="email"
           name="email"
           value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <label>Senha Atual:</label>
-        <input
-          type="password"
-          name="senha_atual"
-          value={formData.senha_atual}
           onChange={handleChange}
           required
         />
