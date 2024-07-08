@@ -33,7 +33,7 @@ const RoutesComponent = () => {
       </Routes>
     </Router>
     
-  );
+);
 }
 
 export default RoutesComponent;
