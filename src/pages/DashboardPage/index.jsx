@@ -1,12 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import AnimalTable from '../../components/AnimalsTable';
 
 const DashboardPage = () => {
-  const navigate = useNavigate();
 
   return (
     <div>
-      <h1>DashboardPage</h1>
+      <AnimalTable />
     </div>
   );
 }
