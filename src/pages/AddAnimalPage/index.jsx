@@ -11,10 +11,7 @@ const AddAnimalPage = () => {
     descricao: '',
     situacao: '',
     url_midia: '',
-    adotante_email: ''
   });
-
-  const [imagePreview, setImagePreview] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -23,32 +20,24 @@ const AddAnimalPage = () => {
     });
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result); // Mostrar uma prévia da imagem, se necessário
-        setFormData({
-          ...formData,
-          url_midia: reader.result // Armazenar a imagem como base64 no estado formData
-        });
-      };
-      reader.readAsDataURL(file); // Ler o arquivo como base64
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await api.post('/animals/register', formData);
+      console.log('Animal registrado com sucesso:', response.data);
+      // Você pode adicionar mais lógica aqui, como redirecionar o usuário ou mostrar uma mensagem de sucesso
+    } catch (error) {
+      console.error('Erro ao registrar o animal:', error);
+      // Você pode adicionar lógica de tratamento de erro aqui
     }
   };
-  
-
-  const handleSubmit = async (e) => {
-
-  }
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-[1200px]">
         <h2 className="text-2xl font-bold mb-6 text-center">Cadastro de Animal</h2>
         <form onSubmit={handleSubmit} className='flex flex-row justify-center space-x-10'>
-          <div className='flex- flex-column min-w-[500px]'>
+          <div className='flex flex-col w-1/2'>
             <div className="mb-4">
               <label className="block text-gray-700 mb-2" htmlFor="nome">Nome</label>
               <input
@@ -97,6 +86,8 @@ const AddAnimalPage = () => {
                 required
               />
             </div>
+          </div>
+          <div className='flex flex-col w-1/2'>
             <div className="mb-4">
               <label className="block text-gray-700 mb-2" htmlFor="sexo">Sexo</label>
               <select
@@ -123,8 +114,6 @@ const AddAnimalPage = () => {
                 className="w-full px-3 py-2 border rounded-lg"
               />
             </div>
-          </div>
-          <div className='flex- flex-column'>
             <div className="mb-4">
               <label className="block text-gray-700 mb-2" htmlFor="situacao">Situação</label>
               <input
@@ -138,21 +127,17 @@ const AddAnimalPage = () => {
               />
             </div>
             <div className="mb-4">
-              <label className="block text-gray-700 mb-2" htmlFor="url_midia">Upload de Imagem</label>
+              <label className="block text-gray-700 mb-2" htmlFor="url_midia">URL da Imagem</label>
               <input
-                type="file"
+                type="text"
                 name="url_midia"
                 id="url_midia"
-                accept="image/*"
-                onChange={handleFileChange}
+                value={formData.url_midia}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-lg"
+                required
               />
             </div>
-            {imagePreview && (
-              <div className="mb-4">
-                <img src={imagePreview} alt="Preview" className="w-full h-64 object-cover rounded-lg" />
-              </div>
-            )}
             <div className="text-center">
               <button
                 type="submit"

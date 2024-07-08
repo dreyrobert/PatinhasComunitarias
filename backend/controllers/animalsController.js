@@ -2,13 +2,14 @@ const { db } = require('../config/db');
 
 // Register animals
 exports.registerAnimal = async (req, res) => {
-    const { nome, especie, raca, idade, sexo, descricao, url_midia, situacao } = req.body;
+    console.log(req.body);
+    const { nome, especie, raca, idade, sexo, descricao, situacao, url_midia } = req.body;
 
     try {
         // Inserir novo animal no banco de dados
         const newAnimal = await db.one(
-            'INSERT INTO animal (nome, especie, raca, idade, sexo, descricao, url_midia, situacao) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
-            [nome, especie, raca, idade, sexo, descricao, url_midia, situacao]
+            'INSERT INTO animais (nome, especie, raca, idade, sexo, descricao, situacao, url_midia) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
+            [nome, especie, raca, idade, sexo, descricao, situacao, url_midia]
         );
 
         res.status(201).json(newAnimal);
