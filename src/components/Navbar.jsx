@@ -33,18 +33,16 @@ const Navbar = () => {// Exemplo de verificação de usuário admin(voluntário)
       )}
       <div className='perfil'>
         {token ? (
+          <>
           <Link to='/accont'>
             <img src={perfil} alt="imagem de perfil" />
           </Link>
+          <button onClick={logout}>Sair</button>
+          </>
         ) : (
           <Link to='/login'>
             <img src={perfil} alt="imagem de perfil" />
           </Link>
-        )}
-        {token ? (
-          <button onClick={logout}>Sair</button>
-        ) : (
-          <Link to="/login">Entrar</Link>
         )}
       </div>
     </nav>

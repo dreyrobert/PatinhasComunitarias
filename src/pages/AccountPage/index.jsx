@@ -30,7 +30,7 @@ const AccountPage = () => {
       }
     };
     fetchCurrentUser();
-  }, [token]); // Executa apenas quando token é alterado
+  }, [token]);
 
   const handleChange = (e) => {
     setFormData({
@@ -56,6 +56,8 @@ const AccountPage = () => {
 
   return (
     <div className="account-page">
+
+    <div className="account-container">
       <h1>Minha Conta</h1>
       <form onSubmit={handleSubmit} className="account-form">
         <label>Nome Completo:</label>
@@ -91,6 +93,7 @@ const AccountPage = () => {
         />
         <button type="submit">Salvar Alterações</button>
       </form>
+    </div>
     </div>
   );
 };

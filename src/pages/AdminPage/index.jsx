@@ -54,7 +54,9 @@ const AdminPage = () => {
 
     return (
         <div className="admin-page">
-            <form onSubmit={handleSubmit} className="admin-form">
+
+        <div className="admin-container">
+            <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name="nome_completo"
@@ -79,16 +81,20 @@ const AdminPage = () => {
                     onChange={handleChange}
                     required
                 />
-                <button type="submit">Adicionar Administrador</button>
+                <button type="submit">Adicionar Voluntário</button>
             </form>
-            <ul className="admin-list">
-                {administradores.map(admin => (
-                    <li key={admin.email} className="admin-item">
-                        {admin.nome_completo} ({admin.email})
-                        <button onClick={() => handleDelete(admin.email)}>Remover</button>
-                    </li>
-                ))}
-            </ul>
+
+            <div className="admin-list-container">
+                <ul className="admin-list">
+                    {administradores.map(admin => (
+                        <li key={admin.email} className="admin-item">
+                            {admin.nome_completo} ({admin.email})
+                            <button onClick={() => handleDelete(admin.email)}>Remover</button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
         </div>
     );
 };
