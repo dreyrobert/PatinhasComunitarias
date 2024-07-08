@@ -11,21 +11,6 @@ CREATE TABLE Administrador (
     senha VARCHAR(100) NOT NULL
 );
 
--- Tabela Animais
-CREATE TABLE Animais (
-    ID SERIAL PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    especie VARCHAR(255) NOT NULL,
-    raca VARCHAR(255) NOT NULL,
-    idade INT NOT NULL,
-    sexo SMALLINT NOT NULL,
-    descricao VARCHAR(100) NULL,
-    situacao VARCHAR(255) NOT NULL,
-    url_midia VARCHAR(255),
-    adotante_email VARCHAR(255),
-    FOREIGN KEY (adotante_email) REFERENCES Adotante(email)
-);
-
 -- Tabela Adotante
 CREATE TABLE Adotante (
     email VARCHAR(255) NOT NULL PRIMARY KEY,
@@ -44,6 +29,21 @@ CREATE TABLE Adotante (
     situacao_ultimo_animal INT NOT NULL,
     moradia_telada BOOLEAN NOT NULL,
     nome_completo VARCHAR(255) NOT NULL
+);
+
+-- Tabela Animais
+CREATE TABLE Animais (
+    ID SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    especie VARCHAR(255) NOT NULL,
+    raca VARCHAR(255) NOT NULL,
+    idade INT NOT NULL,
+    sexo SMALLINT NOT NULL,
+    descricao VARCHAR(100) NULL,
+    situacao VARCHAR(255) NOT NULL,
+    url_midia VARCHAR(255),
+    adotante_email VARCHAR(255) NULL,
+    FOREIGN KEY (adotante_email) REFERENCES Adotante(email)
 );
 
 -- Tabela Procedimentos

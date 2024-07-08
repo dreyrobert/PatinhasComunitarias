@@ -1,6 +1,6 @@
 const { db } = require('../config/db');
 
-// Register user
+// Register animals
 exports.registerAnimal = async (req, res) => {
     const { nome, especie, raca, idade, sexo, descricao, url_midia, situacao } = req.body;
 

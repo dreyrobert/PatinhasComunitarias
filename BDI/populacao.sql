@@ -1,37 +1,27 @@
--- Populando a tabela Administrador
-INSERT INTO Administrador (Nome_Completo, Senha, E_mail) VALUES
-('Alice Silva', 'senha123', 'alice@example.com'),
-('Bruno Souza', 'senha456', 'bruno@example.com');
+-- Inserir dados na tabela Adotante
+INSERT INTO Adotante (email, alimentacao, cpf, tipo_moradia, telefone, telefone_2, profissao, logradouro, bairro, cidade, cep, ja_teve_animais_antes, instagram, situacao_ultimo_animal, moradia_telada, nome_completo)
+VALUES
+('adotante1@exemplo.com', 1, '123.456.789-01', 2, '(11) 1234-5678', '(11) 9876-5432', 'Engenheiro', 'Rua A, 123', 'Bairro A', 'Cidade A', '12345-678', TRUE, '@adotante1', 1, TRUE, 'João da Silva'),
+('adotante2@exemplo.com', 2, '234.567.890-12', 1, '(21) 2345-6789', NULL, 'Médico', 'Rua B, 456', 'Bairro B', 'Cidade B', '23456-789', FALSE, '@adotante2', 2, FALSE, 'Maria Oliveira'),
+('adotante3@exemplo.com', 3, '345.678.901-23', 3, '(31) 3456-7890', '(31) 8765-4321', 'Professor', 'Rua C, 789', 'Bairro C', 'Cidade C', '34567-890', TRUE, NULL, 1, TRUE, 'Carlos Pereira'),
+('adotante4@exemplo.com', 1, '456.789.012-34', 2, '(41) 4567-8901', NULL, 'Advogado', 'Rua D, 101', 'Bairro D', 'Cidade D', '45678-901', TRUE, '@adotante4', 3, FALSE, 'Ana Costa'),
+('adotante5@exemplo.com', 2, '567.890.123-45', 1, '(51) 5678-9012', '(51) 7654-3210', 'Enfermeira', 'Rua E, 202', 'Bairro E', 'Cidade E', '56789-012', FALSE, '@adotante5', 2, TRUE, 'Paula Souza'),
+('adotante6@exemplo.com', 3, '678.901.234-56', 3, '(61) 6789-0123', NULL, 'Dentista', 'Rua F, 303', 'Bairro F', 'Cidade F', '67890-123', TRUE, '@adotante6', 1, TRUE, 'Bruno Lima'),
+('adotante7@exemplo.com', 1, '789.012.345-67', 2, '(71) 7890-1234', '(71) 6543-2109', 'Arquiteto', 'Rua G, 404', 'Bairro G', 'Cidade G', '78901-234', FALSE, '@adotante7', 2, FALSE, 'Fernanda Alves'),
+('adotante8@exemplo.com', 2, '890.123.456-78', 1, '(81) 8901-2345', NULL, 'Veterinária', 'Rua H, 505', 'Bairro H', 'Cidade H', '89012-345', TRUE, '@adotante8', 3, TRUE, 'Juliana Santos'),
+('adotante9@exemplo.com', 3, '901.234.567-89', 3, '(91) 9012-3456', '(91) 5432-1098', 'Programador', 'Rua I, 606', 'Bairro I', 'Cidade I', '90123-456', TRUE, '@adotante9', 1, FALSE, 'Rafael Martins'),
+('adotante10@exemplo.com', 1, '012.345.678-90', 2, '(11) 0123-4567', NULL, 'Designer', 'Rua J, 707', 'Bairro J', 'Cidade J', '01234-567', FALSE, '@adotante10', 2, TRUE, 'Bianca Ferreira');
 
--- Populando a tabela Adotante
-INSERT INTO Adotante (E_mail, Alimentacao, CPF, Tipo_Moradia, Telefone, Telefone_2, Profissao, Logradouro, Bairro, Cidade, CEP, Ja_teve_animais_antes, Instagram, Situacao_ultimo_animal, Moradia_telada, Nome_Completo) VALUES
-('carlos@example.com', 1, '123.456.789-00', 1, '99999-9999', NULL, 'Engenheiro', 'Rua A, 123', 'Centro', 'Cidade A', '12345-678', TRUE, NULL, 1, TRUE, 'Carlos Silva'),
-('daniela@example.com', 2, '987.654.321-00', 2, '88888-8888', '77777-7777', 'Médica', 'Rua B, 456', 'Bairro B', 'Cidade B', '87654-321', FALSE, 'daniela_insta', 2, FALSE, 'Daniela Santos');
-
--- Populando a tabela Animais
-INSERT INTO Animais (Nome, Especie, Raca, Situacao, URL_midia, Adotante_Email) VALUES
-('Rex', 'Cachorro', 'Labrador', 'Disponível', 'http://example.com/rex.jpg', 'carlos@example.com'),
-('Mimi', 'Gato', 'Siamês', 'Adotado', 'http://example.com/mimi.jpg', 'daniela@example.com');
-
--- Populando a tabela Historico_de_Saude
-INSERT INTO Historico_de_Saude (Animal_ID, Alergias, Data_Registro, Condicoes_Medicas, Procedimentos_Cirurgicos) VALUES
-(1, 'Pólen', '2023-01-01', 'Nenhuma', 'Nenhum'),
-(2, 'Nenhuma', '2023-02-01', 'Nenhuma', 'Esterilização');
-
--- Populando a tabela Procedimentos
-INSERT INTO Procedimentos (Animal_ID, Data, Observacoes, Tipo) VALUES
-(1, '2023-03-01', 'Check-up geral', 'Consulta'),
-(2, '2023-04-01', 'Vacinação anual', 'Vacina');
-
--- Populando a tabela Vacinas
-INSERT INTO Vacinas (Procedimento_ID, Proxima_Dose) VALUES
-(2, '2024-04-01');
-
--- Populando a tabela Exames
-INSERT INTO Exames (Procedimento_ID, Resultado) VALUES
-(1, 'Saudável');
-
--- Populando a tabela Gastos
-INSERT INTO Gastos (Status, Data, Descricao, Categoria, Valor, Metodo_Pagamento, Numero_Transacao, Conta, Tags) VALUES
-('Pago', '2023-05-01', 'Compra de ração', 'Alimentação', 100.50, 1, 'TRANS123', 'Conta1', 'Ração'),
-('Pendente', '2023-06-01', 'Consulta veterinária', 'Saúde', 200.00, 2, 'TRANS124', 'Conta2', 'Veterinário');
+-- Inserir dados na tabela Animais
+INSERT INTO Animais (nome, especie, raca, idade, sexo, descricao, situacao, url_midia, adotante_email)
+VALUES
+('Rex', 'Cachorro', 'Labrador', 3, 1, 'Muito amigável e enérgico.', 'Disponível', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/640px-YellowLabradorLooking_new.jpg', NULL),
+('Mia', 'Gato', 'Siamês', 2, 0, 'Carinhosa e brincalhona.', 'Disponível', 'https://premierpet.com.br/wp-content/uploads/2023/12/shutterstock_2341407545-1024x683.jpg', NULL),
+('Buddy', 'Cachorro', 'Beagle', 4, 1, 'Adora correr e brincar ao ar livre.', 'Adotado', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Beagle_Faraon.JPG/1200px-Beagle_Faraon.JPG', 'adotante1@exemplo.com'),
+('Luna', 'Gato', 'Persa', 1, 0, 'Muito tranquila e independente.', 'Disponível', 'https://www.patasdacasa.com.br/sites/default/files/inline-images/gato%20persa%20exo%CC%81tico.jpg', NULL),
+('Max', 'Cachorro', 'Pastor Alemão', 5, 1, 'Excelente cão de guarda.', 'Disponível', 'https://upload.wikimedia.org/wikipedia/commons/7/76/Adult_male_German_shepherd_dog_standing_at_the_beach_%28retouched%29.jpg', NULL),
+('Nina', 'Gato', 'Maine Coon', 3, 0, 'Muito inteligente e curiosa.', 'Adotado', 'https://blog-static.petlove.com.br/wp-content/uploads/2018/05/Maine-Coon.jpg', 'adotante2@exemplo.com'),
+('Rocky', 'Cachorro', 'Bulldog', 2, 1, 'Adora companhia humana.', 'Disponível', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoehe1uSWRAMk2rnIaHBwrbfH8uKavHstD1w&s', NULL),
+('Lily', 'Gato', 'Bengal', 4, 0, 'Muito ativa e brincalhona.', 'Disponível', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi5-ghmcCJ1aX9wC2ErxjlSAamRtmz5WM8Gw&s', NULL),
+('Charlie', 'Cachorro', 'Poodle', 6, 1, 'Muito obediente e adestrado.', 'Adotado', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrMZc_1qJ22J1c7H1zZQyI8C7a1693uxRyNQ&s', 'adotante3@exemplo.com'),
+('Bella', 'Gato', 'Sphynx', 2, 0, 'Muito carinhosa e adora atenção.', 'Disponível', 'https://blog-static.petlove.com.br/wp-content/uploads/2021/02/sphynx-doencas-petlove.jpg', NULL);
