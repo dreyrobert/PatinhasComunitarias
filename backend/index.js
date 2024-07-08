@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/admin', adminRoutes);
 
-app.use('/api', animalsRoutes);
+app.use('/animals', animalsRoutes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

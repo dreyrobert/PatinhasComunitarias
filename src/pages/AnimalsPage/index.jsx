@@ -53,33 +53,32 @@ const AnimalsPage = () => {
   };
 
   return (
-    <div className="mt-20 relative">
-      <Carousel
-      responsive={responsive}
-        infinite={false}
-        draggable={true}
-        swipeable={true}
-        arrows={true}
-        showDots={true}
-        centerMode={true}
-        autoPlay={true}
-        autoPlaySpeed={3000}
-        removeArrowOnDeviceType={['tablet', 'mobile']}
-        keyBoardControl={true}
-        customTransition="transform 300ms ease-in-out"
-        transitionDuration={300}
-        className="relative p-[200px] m-[200px] overflow-hidden"
-      >
-        {animals.map(animal => (
-          <PetCard
-            key={animal.id}
-            animal={animal}
-            onCardClick={() => handleCardClick(animal.id)}
-          />
-        ))}
-      </Carousel>
-      {popupAnimal && <PetPopup animal={popupAnimal} onClosePopup={handleClosePopup} />}
-    </div>
+    <>
+        <Carousel
+          responsive={responsive}
+          infinite={false}
+          draggable={true}
+          swipeable={true}
+          arrows={true}
+          centerMode={true}
+          autoPlay={true}
+          autoPlaySpeed={3000}
+          removeArrowOnDeviceType={['tablet', 'mobile']}
+          keyBoardControl={true}
+          customTransition="transform 300ms ease-in-out"
+          transitionDuration={300}
+          className="flex m-20 flex-row align-middle justify-center h-[80vh]"
+        >
+          {animals.map(animal => (
+            <PetCard
+              key={animal.id}
+              animal={animal}
+              onCardClick={() => handleCardClick(animal.id)}
+            />
+          ))}
+        </Carousel>
+        {popupAnimal && <PetPopup animal={popupAnimal} onClosePopup={handleClosePopup} />}
+    </>
   );
 };
 
