@@ -2,7 +2,7 @@ import React from 'react';
 
 const PetCard = ({ animal, onCardClick }) => {
     return (
-        <div onClick={onCardClick} className="w-56 rounded-lg overflow-hidden shadow-lg font-sans bg-white cursor-pointer">
+        <div onClick={onCardClick} className="w-56 rounded-lg overflow-hidden shadow-lg font-sans bg-white cursor-pointer h-[300px]">
             <img
                 src={animal.url_midia}
                 alt={animal.nome}
