@@ -20,7 +20,7 @@ exports.loginAdmin = asyncHandler(async (req, res) => {
 
     if (admin && (await bcrypt.compare(senha, admin.senha))) {
         const token = jwt.sign({ email: admin.email }, 'your_jwt_secret', { expiresIn: '1h' });
-        res.json({ token });
+        res.json({ token, nome_completo: admin.nome_completo, email: admin.email});
     } else {
         res.status(401).json({ message: 'Credenciais inválidas' });
     }

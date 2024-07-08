@@ -14,7 +14,12 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await api.post('/admin/login', { email, senha });
-      login(response.data.token);
+      console.log('Login response:', response.data);
+      const userInfo = {
+        nome_completo: response.data.nome_completo,
+        email: response.data.email,
+      };
+      login(response.data.token, userInfo);
       navigate('/');
     } catch (err) {
       console.error('Login failed', err);

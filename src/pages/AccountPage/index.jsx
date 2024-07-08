@@ -1,36 +1,16 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import api from '../../services/api';
 import '../../styles/AccountPage.css';
 
 const AccountPage = () => {
-  const { token } = useContext(AuthContext);
-  const [currentUser, setCurrentUser] = useState({});
+  const { token, user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
-    nome_completo: '',
-    email: '',
+    nome_completo: `${user.nome_completo}`,
+    email: `${user.email}`,
     senha_atual: '',
     nova_senha: ''
   });
-
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-      try {
-        const response = await api.get('/admin/me', {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setCurrentUser(response.data);
-        setFormData({
-          ...formData,
-          nome_completo: response.data.nome_completo,
-          email: response.data.email
-        });
-      } catch (error) {
-        console.error('Erro ao buscar usuário atual', error);
-      }
-    };
-    fetchCurrentUser();
-  }, [token]);
 
   const handleChange = (e) => {
     setFormData({
