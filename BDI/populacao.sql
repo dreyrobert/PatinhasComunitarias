@@ -18,7 +18,7 @@ VALUES
 ('Rex', 'Cachorro', 'Labrador', 3, 1, 'Muito amigável e enérgico.', 'Disponível', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/YellowLabradorLooking_new.jpg/640px-YellowLabradorLooking_new.jpg', NULL),
 ('Mia', 'Gato', 'Siamês', 2, 0, 'Carinhosa e brincalhona.', 'Disponível', 'https://premierpet.com.br/wp-content/uploads/2023/12/shutterstock_2341407545-1024x683.jpg', NULL),
 ('Buddy', 'Cachorro', 'Beagle', 4, 1, 'Adora correr e brincar ao ar livre.', 'Adotado', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Beagle_Faraon.JPG/1200px-Beagle_Faraon.JPG', 'adotante1@exemplo.com'),
-('Luna', 'Gato', 'Persa', 1, 0, 'Muito tranquila e independente.', 'Disponível', 'https://www.patasdacasa.com.br/sites/default/files/inline-images/gato%20persa%20exo%CC%81tico.jpg', NULL),
+('Luna', 'Gato', 'Persa', 1, 0, 'Muito tranquila e independente.', 'Disponível', 'https://www.patasdacasa.com.br/sites/default/files/inline-images/gato%20persa%20exo%CC%81tico.jpg', 'adotante1@exemplo.com'),
 ('Max', 'Cachorro', 'Pastor Alemão', 5, 1, 'Excelente cão de guarda.', 'Disponível', 'https://upload.wikimedia.org/wikipedia/commons/7/76/Adult_male_German_shepherd_dog_standing_at_the_beach_%28retouched%29.jpg', NULL),
 ('Nina', 'Gato', 'Maine Coon', 3, 0, 'Muito inteligente e curiosa.', 'Adotado', 'https://blog-static.petlove.com.br/wp-content/uploads/2018/05/Maine-Coon.jpg', 'adotante2@exemplo.com'),
 ('Rocky', 'Cachorro', 'Bulldog', 2, 1, 'Adora companhia humana.', 'Disponível', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoehe1uSWRAMk2rnIaHBwrbfH8uKavHstD1w&s', NULL),

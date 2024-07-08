@@ -32,12 +32,6 @@ const PetPopup = ({ animal, onClosePopup }) => {
                         </button>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 mt-4">
-                    <div className="w-full h-24 bg-gray-200 flex items-center justify-center">Image</div>
-                    <div className="w-full h-24 bg-gray-200 flex items-center justify-center">Image</div>
-                    <div className="w-full h-24 bg-gray-200 flex items-center justify-center">Image</div>
-                    <div className="w-full h-24 bg-gray-200 flex items-center justify-center">Image</div>
-                </div>
                 <button className="mt-4 bg-pink-500 text-white py-2 px-4 rounded-lg w-full">
                     Quero Adotar
                 </button>

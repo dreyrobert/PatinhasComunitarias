@@ -11,6 +11,7 @@ import DashboardPage from './pages/DashboardPage';
 import AdminPage from './pages/AdminPage';
 import { AuthContext } from './context/AuthContext';
 import Navbar from './components/Navbar';
+import ManageAnimalsPage from './pages/ManageAnimalsPage';
 
 
 const RoutesComponent = () => {
@@ -28,6 +29,7 @@ const RoutesComponent = () => {
         <Route path="/accont" element={token ? <AccountPage /> : <Navigate to="/login" />} />
         <Route path="/admin"  element={token ? <AdminPage /> : <Navigate to="/login" />}/>
         <Route path="/add-animal" element={token ? <AddAnimalPage /> : <Navigate to="/login" />} />
+        <Route path="/manage-animals" element={token ? <ManageAnimalsPage /> : <Navigate to="/login" />} />
         <Route path="/dashboard" element={token ? <DashboardPage /> : <Navigate to="/login" />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
