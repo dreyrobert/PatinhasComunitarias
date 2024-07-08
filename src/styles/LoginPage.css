@@ -1,74 +1,49 @@
-.register-page {
-  margin: 0;
-  background-color: #FE2166;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.auth-container {
-  width: 100%;
-  max-width: 400px;
-  margin: 20px;
-  padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.auth-container h1 {
-  margin-bottom: 20px;
-}
-
-.auth-container form {
+.login-page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f4;
 }
 
-.auth-container .form-group {
+.login-page h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #333;
+}
+
+.login-page form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-page input {
   width: 100%;
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.auth-container label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.auth-container input {
-  width: calc(100% - 20px);
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
 }
 
-.auth-container .btn-primary {
+.login-page button {
   width: 100%;
   padding: 10px;
-  background: #FE2166;
-  color: white;
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s;
-}
-
-.auth-container .btn-primary:hover {
-  background: #e01e5a;
-}
-
-.auth-container p {
-  margin-top: 20px;
-}
-
-.auth-container .message {
+  font-size: 1rem;
   margin-top: 10px;
-  color: #ff0000;
-  font-weight: bold;
+}
+
+.login-page button:hover {
+  background-color: #0056b3;
 }

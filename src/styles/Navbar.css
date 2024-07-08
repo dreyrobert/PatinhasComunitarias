@@ -4,8 +4,7 @@
   align-items: center;
   background-color: transparent;
   position: absolute;
-  padding: 0px 25px;
-  padding-top: 25px;
+  padding: 15px;
   top: 0;
   left: 0;
   right: 0;
@@ -43,7 +42,7 @@
 .nav-item a {
   text-decoration: none;
   color: #283B40;
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .nav-item a:hover {
@@ -53,4 +52,12 @@
 .nav-item a.active {
   font-weight: bold;
   color: #007bff; 
+}
+.perfil{
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+.perfil img{
+  height: 50px;
 }

@@ -1,69 +1,99 @@
 .admin-page {
-  background-color: #f0f0f0;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: center;
   height: 100vh;
+  background-color: #f4f4f4;
+}
+.admin-container {
+  width: 50%; /* Ajuste o tamanho conforme necessário */
+  max-height: 650px; /* Limita o tamanho máximo */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  padding: 20px; /* Adiciona algum espaço interno */
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.users-container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 8px;
+.admin-container h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.admin-list-container {
+  max-height: 250px; /* Ajuste para o valor desejado */
+  overflow-y: auto;
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  align-items: center;
+  padding: 1rem;
 }
 
-.search-bar {
-  width: 50%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.admin-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.list-container {
-  max-height: 400px; /* Define a altura fixa do contêiner */
-  overflow-y: auto; /* Habilita a barra de rolagem vertical */
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-.user-item {
+.admin-container ul li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ccc;
 }
 
-.user-item:last-child {
+.admin-container ul li:last-child {
   border-bottom: none;
 }
 
-.btn-toggle-adm {
-  color: white;
+.admin-container ul li button {
+  background: #dc3545;
   border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.btn-add {
-    background-color: green;
+.admin-container ul li button:hover {
+  background: #c82333;
 }
 
-.btn-add:hover {
-    background-color: darkgreen;
+.admin-container form {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
 }
 
-.btn-remove {
-    background-color: red;
+.admin-container form input {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
-.btn-remove:hover {
-    background-color: darkred;
+.admin-container form button {
+  padding: 0.75rem;
+  margin: 1rem 0;
+  background: #007bff;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 1rem;
+}
+
+.admin-container form button:hover {
+  background: #0056b3;
 }
