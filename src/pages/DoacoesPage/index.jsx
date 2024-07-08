@@ -6,7 +6,12 @@ const DoacoesPage = () => {
 
   return (
     <div>
-      <h1>DoacoesPage</h1>
+      <h1>DoacoesPage
+        link do insta
+        pix do patinhas
+        link do apadrinhar
+        petlove
+      </h1>
     </div>
   );
 }

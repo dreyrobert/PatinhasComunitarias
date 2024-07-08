@@ -27,8 +27,8 @@ const RoutesComponent = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/accont" element={<AccountPage />} />
         <Route path="/admin"  element={token ? <AdminPage /> : <Navigate to="/login" />}/>
-        <Route path="/add-animal" element={<AddAnimalPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/add-animal" element={token ? <AddAnimalPage /> : <Navigate to="/login" />} />
+        <Route path="/dashboard" element={token ? <DashboardPage /> : <Navigate to="/login" />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>

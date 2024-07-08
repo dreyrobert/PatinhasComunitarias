@@ -23,30 +23,30 @@ const Navbar = () => {// Exemplo de verificação de usuário admin(voluntário)
           <li className="nav-item"><Link to="/doacoes" className={location.pathname === '/doacoes' ? 'active' : ''}>APOIE AQUI</Link></li>
           <li className="nav-item"><Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>DASHBOARD</Link></li>
           <li className="nav-item"><Link to="/admin" className={location.pathname === '/admin' ? 'active' : ''}>VOLUNTÁRIOS</Link></li>
-      </ul>
-    ) : (
-      <ul className="nav-list">
+        </ul>
+      ) : (
+        <ul className="nav-list">
           <li className="nav-item"><Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>SOBRE NÓS</Link></li>
           <li className="nav-item"><Link to="/animals" className={location.pathname === '/animals' ? 'active' : ''}>NOSSOS ANIMAIS</Link></li>
           <li className="nav-item"><Link to="/doacoes" className={location.pathname === '/doacoes' ? 'active' : ''}>APOIE AQUI</Link></li>
-      </ul>
-    )}
-     <div className='perfil'>
-     {token ? (
-      <Link to= '/accont'>
-        <img src={perfil} alt="imagem de perfil"  />
-        </Link>
-     ) : (
-        <Link to= '/login'>
-        <img src={perfil} alt="imagem de perfil"  />
-        </Link>
-    )}
-        {token ? (    
-        <button onClick={logout}>Sair</button>
+        </ul>
+      )}
+      <div className='perfil'>
+        {token ? (
+          <Link to='/accont'>
+            <img src={perfil} alt="imagem de perfil" />
+          </Link>
         ) : (
-        <Link to="/login">Entrar</Link>
+          <Link to='/login'>
+            <img src={perfil} alt="imagem de perfil" />
+          </Link>
         )}
-      </div> 
+        {token ? (
+          <button onClick={logout}>Sair</button>
+        ) : (
+          <Link to="/login">Entrar</Link>
+        )}
+      </div>
     </nav>
   )
 }
