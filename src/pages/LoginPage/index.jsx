@@ -23,6 +23,7 @@ const LoginPage = () => {
       navigate('/');
     } catch (err) {
       console.error('Login failed', err);
+      alert('Falha no login, tente novamente');
     }
   };
 
