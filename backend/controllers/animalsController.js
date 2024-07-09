@@ -51,13 +51,13 @@ exports.deleteAnimal = async (req, res) => {
 // Update animal
 exports.updateAnimal = async (req, res) => {
     const { id } = req.params;
-    const { nome, especie, raca, idade, sexo, descricao, situacao, url_midia } = req.body;
+    const { nome, especie, raca, idade } = req.body;
 
     try {
         // Atualizar animal no banco de dados
         const updatedAnimal = await db.oneOrNone(
-            'UPDATE animais SET nome = $1, especie = $2, raca = $3, idade = $4, sexo = $5, descricao = $6, situacao = $7, url_midia = $8 WHERE id = $9 RETURNING *',
-            [nome, especie, raca, idade, sexo, descricao, situacao, url_midia, id]
+            'UPDATE animais SET nome = $1, especie = $2, raca = $3, idade = $4 WHERE id = $5 RETURNING *',
+            [nome, especie, raca, idade, id]
         );
 
         if (updatedAnimal) {

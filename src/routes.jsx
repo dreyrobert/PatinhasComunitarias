@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import AnimalsPage from './pages/AnimalsPage';
-import AddAnimalPage from './pages/AddAnimalPage';
 import LoginPage from './pages/LoginPage';
 import AccountPage from './pages/AccountPage';
 import DoacoesPage from './pages/DoacoesPage';
@@ -28,7 +27,6 @@ const RoutesComponent = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/accont" element={token ? <AccountPage /> : <Navigate to="/login" />} />
         <Route path="/admin"  element={token ? <AdminPage /> : <Navigate to="/login" />}/>
-        <Route path="/add-animal" element={token ? <AddAnimalPage /> : <Navigate to="/login" />} />
         <Route path="/manage-animals" element={token ? <ManageAnimalsPage /> : <Navigate to="/login" />} />
         <Route path="/dashboard" element={token ? <DashboardPage /> : <Navigate to="/login" />} />
         <Route path="*" element={<Navigate to="/login" />} />

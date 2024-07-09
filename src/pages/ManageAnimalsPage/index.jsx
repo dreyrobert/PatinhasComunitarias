@@ -48,6 +48,8 @@ const ManageAnimalsPage = () => {
 
   const handleSave = async (updatedAnimal) => {
     try {
+      console.log(updatedAnimal);
+      console.log(`/animals/${updatedAnimal.id}`);
       await api.put(`/animals/${updatedAnimal.id}`, updatedAnimal);
       fetchAnimals();
       closeModal();
