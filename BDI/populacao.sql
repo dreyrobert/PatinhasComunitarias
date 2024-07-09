@@ -25,3 +25,42 @@ VALUES
 ('Lily', 'Gato', 'Bengal', 4, 0, 'Muito ativa e brincalhona.', 'Disponível', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi5-ghmcCJ1aX9wC2ErxjlSAamRtmz5WM8Gw&s', NULL),
 ('Charlie', 'Cachorro', 'Poodle', 6, 1, 'Muito obediente e adestrado.', 'Adotado', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrMZc_1qJ22J1c7H1zZQyI8C7a1693uxRyNQ&s', 'adotante3@exemplo.com'),
 ('Bella', 'Gato', 'Sphynx', 2, 0, 'Muito carinhosa e adora atenção.', 'Disponível', 'https://blog-static.petlove.com.br/wp-content/uploads/2021/02/sphynx-doencas-petlove.jpg', NULL);
+
+-- Inserir dados na tabela Procedimentos
+INSERT INTO Procedimentos (animal_id, Data, observacoes, tipo) VALUES
+(1, '2024-01-05', 'Check-up de rotina', 'Check-up'),
+(2, '2024-02-15', 'Vacina contra raiva', 'Vacinação'),
+(3, '2024-03-10', 'Exame de sangue', 'Exame'),
+(4, '2024-04-20', 'Vacina contra parvovírus', 'Vacinação'),
+(5, '2024-05-25', 'Cirurgia de esterilização', 'Cirurgia'),
+(6, '2024-06-30', 'Exame de urina', 'Exame'),
+(7, '2024-07-05', 'Vacina contra leptospirose', 'Vacinação'),
+(8, '2024-07-15', 'Consulta de emergência', 'Consulta'),
+(9, '2024-08-20', 'Limpeza dentária', 'Procedimento odontológico'),
+(10, '2024-09-10', 'Exame de fezes', 'Exame');
+
+-- Inserir dados na tabela Vacinas
+INSERT INTO Vacinas (procedimento_id, proxima_dose) VALUES
+(2, '2025-02-15'),
+(4, '2025-04-20'),
+(7, '2025-07-05'),
+(2, '2026-02-15'),
+(4, '2026-04-20'),
+(7, '2026-07-05'),
+(2, '2027-02-15'),
+(4, '2027-04-20'),
+(7, '2027-07-05'),
+(2, '2028-02-15');
+
+-- Inserir dados na tabela Exames
+INSERT INTO Exames (procedimento_id, resultado) VALUES
+(3, 'Todos os parâmetros normais'),
+(6, 'Leve infecção detectada'),
+(10, 'Parasitas intestinais detectados'),
+(3, 'Anemia leve'),
+(6, 'Cristais na urina'),
+(10, 'Nenhum parasita detectado'),
+(3, 'Altos níveis de glóbulos brancos'),
+(6, 'Proteína elevada'),
+(10, 'Parvovírus detectado'),
+(3, 'Deficiência de ferro');

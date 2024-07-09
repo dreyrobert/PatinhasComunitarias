@@ -71,3 +71,28 @@ CREATE TABLE Exames (
     resultado TEXT NOT NULL,
     FOREIGN KEY (procedimento_id) REFERENCES Procedimentos(id)
 );
+
+-- Tabela Gastos
+CREATE TABLE Gastos (
+    ID SERIAL PRIMARY KEY,
+    Status VARCHAR(255) NOT NULL,
+    Data DATE NOT NULL,
+    Descricao TEXT,
+    Categoria VARCHAR(255) NOT NULL,
+    Valor DECIMAL(10, 2) NOT NULL,
+    Metodo_Pagamento INT NOT NULL,
+    Numero_Transacao VARCHAR(255) NOT NULL,
+    Conta VARCHAR(255) NOT NULL,
+    Tags VARCHAR(255)
+);
+
+CREATE TABLE Historico_de_Saude (
+    ID SERIAL PRIMARY KEY,
+    Animal_ID INT NOT NULL,
+    Alergias VARCHAR(255),
+    Data_Registro DATE NOT NULL,
+    Condicoes_Medicas TEXT,
+    Procedimentos_Cirurgicos TEXT,
+    FOREIGN KEY (Animal_ID) REFERENCES Animais(ID)
+);
+

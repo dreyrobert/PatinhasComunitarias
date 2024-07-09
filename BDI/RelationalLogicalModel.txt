@@ -6,7 +6,7 @@ E_mail string
 
 Adotante
 --
-E_mail string INDEX
+E_mail string INDEX FK >- Animais.Adotante_email
 Alimentacao int
 CPF string
 Tipo_Moradia int
@@ -31,11 +31,10 @@ Especie string
 Raca string
 Situacao string
 URL_midia string NULL
-
-Adota
---
-Adotante_Email string INDEX FK >- Adotante.E_mail
-Animal_ID int INDEX FK >- Animais.ID
+Idade int
+Sexo int
+Descricao string
+Adotante_email string NULL
 
 Historico_de_Saude
 --
