@@ -1,13 +1,14 @@
 const express = require('express');
-const { registerAdmin, loginAdmin } = require('../controllers/authController');
-const { getAllAdmins, updateAdmin, deleteAdmin } = require('../controllers/adminController');
+const adminController = require('../controllers/adminController');
 
 const router = express.Router();
 
-router.post('/register', registerAdmin);
-router.post('/login', loginAdmin);
-router.get('/', getAllAdmins);
-router.put('/:email', updateAdmin);
-router.delete('/:email', deleteAdmin);
+router.post('/register', adminController.registerAdmin);
+router.post('/login', adminController.loginAdmin);
+router.get('/', adminController.getAllAdmins);
+router.put('/update', adminController.updateAdmin);
+router.get('/:email', adminController.getAdminByEmail);
+router.put('/updatepassword', adminController.updateAdminPassword);
+router.delete('/:email', adminController.deleteAdmin);
 
 module.exports = router;
