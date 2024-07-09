@@ -31,23 +31,38 @@ exports.getAllAdmins = asyncHandler(async (req, res) => {
     res.json(admins);
 });
 
+exports.getAdminByEmail = asyncHandler(async (req, res) => {
+    const { email } = req.params;
+
+    try {
+        const admin = await db.oneOrNone('SELECT nome_completo, email FROM Administrador WHERE email = $1', [email]);
+        res.json(admin);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 exports.updateAdmin = asyncHandler(async (req, res) => {
-    const { nome_completo, email_antigo, email, nova_senha } = req.body;
+    const { nome_completo, email, email_antigo } = req.body;
 
-    if (nova_senha) {
+    try {
+        await db.none('UPDATE Administrador SET nome_completo = $1, email = $2 WHERE email = $3', [nome_completo, email, email_antigo]);
+        res.json({ message: 'Administrador atualizado com sucesso!' })
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+exports.updateAdminPassword = asyncHandler(async (req, res) => {
+    const { email, nova_senha } = req.body;
+
+    try {
         const hashedPassword = await bcrypt.hash(nova_senha, 10);
-        await db.none('UPDATE Administrador SET senha = $1 WHERE email = $2', [hashedPassword, email_antigo]);
+        await db.none('UPDATE Administrador SET senha = $1 WHERE email = $2', [hashedPassword, email]);
+        res.json({ message: 'Senha atualizada com sucesso!' })
+    } catch (error) {
+        res.status(500).send(error.message);
     }
-
-    if (nome_completo) {
-        await db.none('UPDATE Administrador SET nome_completo = $1 WHERE email = $2', [nome_completo, email_antigo]);
-    }
-
-    if (email) {
-        await db.none('UPDATE Administrador SET email = $1 WHERE email = $2', [email, email_antigo]);
-    }
-
-    res.json({ message: 'Administrador atualizado com sucesso!' });
 });
 
 exports.deleteAdmin = asyncHandler(async (req, res) => {
