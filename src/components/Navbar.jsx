@@ -19,7 +19,6 @@ const Navbar = () => {// Exemplo de verificação de usuário admin(voluntário)
         <ul className="nav-list">
           <li className="nav-item"><Link to="/about" className={location.pathname === '/about' ? 'active' : ''}>SOBRE NÓS</Link></li>
           <li className="nav-item"><Link to="/animals" className={location.pathname === '/animals' ? 'active' : ''}>NOSSOS ANIMAIS</Link></li>
-          <li className="nav-item"><Link to="/add-animal" className={location.pathname === '/add-animal' ? 'active' : ''}>ADICIONAR ANIMAIS</Link></li>
           <li className="nav-item"><Link to="/manage-animals" className={location.pathname === '/manage-animals' ? 'active' : ''}>MANUTENÇÃO ANIMAIS</Link></li>
           <li className="nav-item"><Link to="/doacoes" className={location.pathname === '/doacoes' ? 'active' : ''}>APOIE AQUI</Link></li>
           <li className="nav-item"><Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>DASHBOARD</Link></li>

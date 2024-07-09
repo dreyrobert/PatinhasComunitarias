@@ -18,17 +18,17 @@ const AnimalTable = () => {
     }, []);
 
     const groupedAnimals = animals.reduce((acc, animal) => {
-        const { email, nome_completo } = animal;
+        const { adotante_email, nome_completo } = animal;
 
-        if (!acc[email]) {
-            acc[email] = {
-                email,
+        if (!acc[adotante_email]) {
+            acc[adotante_email] = {
+                email: adotante_email,
                 nome_completo,
                 animais: [],
             };
         }
 
-        acc[email].animais.push({
+        acc[adotante_email].animais.push({
             nome: animal.nome,
             especie: animal.especie,
             raca: animal.raca,
@@ -43,7 +43,6 @@ const AnimalTable = () => {
     }, {});
 
     const groupedAnimalsArray = Object.values(groupedAnimals);
-
 
     return (
         <div className="container mx-auto p-4 mt-20">
@@ -64,8 +63,8 @@ const AnimalTable = () => {
                                 <td className="border px-4 py-2">{adopter.email}</td>
                                 <td className="border px-4 py-2">
                                     {adopter.animais.length > 0 ? (
-                                        adopter.animais.map((animal) => (
-                                            <div key={animal.nome} className="mb-2">
+                                        adopter.animais.map((animal, index) => (
+                                            <div key={index} className="mb-2">
                                                 <div><strong>Nome:</strong> {animal.nome}</div>
                                                 <div><strong>Espécie:</strong> {animal.especie}</div>
                                                 <div><strong>Raça:</strong> {animal.raca}</div>
@@ -81,7 +80,6 @@ const AnimalTable = () => {
                             </tr>
                         ))}
                     </tbody>
-
                 </table>
             </div>
         </div>

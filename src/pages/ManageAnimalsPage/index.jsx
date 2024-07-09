@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import AddAnimalModal from '../../components/AddAnimalModal';
 import api from '../../services/api';
 
 const ManageAnimalsPage = () => {
   const [animals, setAnimals] = useState([]);
   const [selectedAnimal, setSelectedAnimal] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchAnimals();
@@ -35,6 +37,15 @@ const ManageAnimalsPage = () => {
     setSelectedAnimal(null);
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeAddAnimalModal = () => {
+    setIsModalOpen(false);
+    fetchAnimals();
+  };
+
   const handleSave = async (updatedAnimal) => {
     try {
       await api.put(`/animals/${updatedAnimal.id}`, updatedAnimal);
@@ -47,7 +58,15 @@ const ManageAnimalsPage = () => {
 
   return (
     <div className="container mx-auto p-4 mt-20">
-      <h1 className="text-2xl font-bold mb-4">Lista de Animais</h1>
+      <div className='flex flex-row w-full justify-between items-center'>
+        <h1 className="text-2xl font-bold mb-4">Lista de Animais</h1>
+        <button
+          className="bg-blue-500 text-white px-2 py-1 mr-2 rounded"
+          onClick={openModal}
+        >
+          Adicionar Animal
+        </button>
+      </div>
       <table className="min-w-full bg-white">
         <thead>
           <tr>
@@ -91,6 +110,7 @@ const ManageAnimalsPage = () => {
           onSave={handleSave}
         />
       )}
+      <AddAnimalModal isOpen={isModalOpen} onClose={closeAddAnimalModal} />
     </div>
   );
 };

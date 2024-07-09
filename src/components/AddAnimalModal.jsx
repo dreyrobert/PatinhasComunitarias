@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import api from '../../services/api';
+import api from '../services/api';
 
-const AddAnimalPage = () => {
+const AddAnimalModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
     nome: '',
     especie: '',
@@ -25,6 +25,7 @@ const AddAnimalPage = () => {
     try {
       const response = await api.post('/animals/register', formData);
       console.log('Animal registrado com sucesso:', response.data);
+      onClose();
       // Você pode adicionar mais lógica aqui, como redirecionar o usuário ou mostrar uma mensagem de sucesso
     } catch (error) {
       console.error('Erro ao registrar o animal:', error);
@@ -32,9 +33,19 @@ const AddAnimalPage = () => {
     }
   };
 
+  if (!isOpen) {
+    return null;
+  }
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-[1200px]">
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-[1200px] relative">
+        <button
+          className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+          onClick={onClose}
+        >
+          &times;
+        </button>
         <h2 className="text-2xl font-bold mb-6 text-center">Cadastro de Animal</h2>
         <form onSubmit={handleSubmit} className='flex flex-row justify-center space-x-10'>
           <div className='flex flex-col w-1/2'>
@@ -151,6 +162,6 @@ const AddAnimalPage = () => {
       </div>
     </div>
   );
-}
+};
 
-export default AddAnimalPage;
+export default AddAnimalModal;
